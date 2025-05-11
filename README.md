@@ -5,7 +5,7 @@
   - process and manage data for budget analysis
 - Features:
   - scan "retail-slips" for transactions
-  - web-hooks to bank acoounts
+  - web-hooks to bank accounts
   - running total of investments and balances
 
 ---
