@@ -1,11 +1,20 @@
-use ferris_says::say; // from the previous step
-use std::io::{stdout, BufWriter};
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
 
-fn main() {
-    let stdout = stdout();
-    let message = String::from("mmmkayyy....");
-    let width = message.chars().count();
-
-    let mut writer = BufWriter::new(stdout.lock());
-    say(&message, width, &mut writer).unwrap();
+fn main() -> io::Result<()> {
+    extract_tx()?;
+    Ok(())
 }
+
+fn extract_tx() -> io::Result<()> {
+    let file = File::open("test.txt")?;
+    let reader = BufReader::new(file);
+
+    for (index, line_result) in reader.lines().enumerate() {
+        let line = line_result?;
+        println!("{}: {}", index + 1, line);
+    }
+
+    Ok(())
+}
+
